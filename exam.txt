@@ -1,0 +1,78 @@
+database school
+user root
+password 
+
+CREATE TABLE student( 
+id INT AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+family VARCHAR(100) NOT NULL,
+nationalCode VARCHAR(10) UNIQUE,
+PRIMARY KEY (id, nationalCode)
+);
+
+# insert
+INSERT INTO student (name, family, nationalCode)
+VALUES ('SIna', 'Bakhshandeh', '7849562130');
+
+1 ,'SIna', 'Bakhshandeh', '7849562130'
+# update
+UPDATE student
+SET name='Sina'
+WHERE id=1;
+
+# delete
+DELETE FROM student WHERE id=1;
+
+# select
+SELECT * FROM student
+
+# class database 
+import mysql.connector
+
+
+class Database:
+    def __init__(self):
+        self.db = mysql.connector.connect(
+            db=school,
+            user=root,
+            password='',
+            host='localhost'
+        )
+        self.cursor = self.db.cursor()
+
+# class insert
+class Inser(Database):
+    def __init__(self, name, family, nationalCode):
+        Database.__init__(self)
+        data = (name, family, nationalCode)
+        q = """INSERT INTO student (name, family, nationalCode) 
+        VALUES (%s,%s,%s)"""
+        self.cursor.execute(q, data)
+        self.db.commit()
+        self.cursor.close()
+        self.db.close()
+
+
+
+exam 2:
+
+database school
+user root
+password 
+
+CREATE TABLE student( 
+id INT AUTO_INCREMENT,
+fullname VARCHAR(100) NOT NULL,
+nationalCode VARCHAR(10) UNIQUE,
+birthDate date,
+classColor VARCHAR(10);
+);
+
+#insert
+#update
+#delete
+#select
+
+#class 
+    database
+    delet
