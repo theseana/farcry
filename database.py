@@ -5,10 +5,10 @@ class Database:
     def __init__(self):
         try:
             self.db = mysql.connector.connect(
-            db='schoolManagement',
-            user='root',
-            password='',
-            host='localhost'
+                db='schoolManagement',
+                user='root',
+                password='',
+                host='localhost'
             )
             self.cr = self.db.cursor()
         except:
