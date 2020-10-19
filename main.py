@@ -1,9 +1,9 @@
 from tkcalendar import DateEntry
 
 from tkinter import *
-from tkinter.ttk import Notebook
+from tkinter.ttk import Notebook, Treeview, Scrollbar
 
-from database import StudentInsert
+from database import StudentInsert, StudentSelect
 
 
 def length(a , b, c):
@@ -29,6 +29,7 @@ def student_create():
     birth.set('')
     n_id.set('')
     addr.set('')
+    
        
 root = Tk()
 
@@ -72,6 +73,23 @@ Entry(s_insert, textvariable=addr).grid(row=4, column=1)
 Button(s_insert, text='Create', command=student_create).grid(row=5, column=0, columnspan=2, sticky=W+E)
 Button(s_insert, text='Cancel', command=root.destroy).grid(row=6, column=0, columnspan=2, sticky=W+E)
 # #################################################################### #
-
+tree = Treeview(s_search)
+vsb = Scrollbar(s_search, orient="vertical",command=tree.yview)
+vsb.grid(row=0, column=1)
+tree.configure(yscrollcommand=vsb.set)
+tree["columns"]=("one","two","three")
+tree.column("#0", width=30)
+tree.column("one", width=80)
+tree.column("two", width=100)
+tree.column("three", width=90)
+#############################################  update treeview --- serach select baham --- editable treeview
+tree.heading("#0",text="ID",anchor=W)
+tree.heading("one", text="Name")
+tree.heading("two", text="Family")
+tree.heading("three", text="Code",anchor=W)
+persons = StudentSelect().get()
+for person in persons:
+    tree.insert("",person[0], text=person[0], values=(person[1], person[2], person[4]))
+tree.grid(row=0, column=0)
 # #################################################################### #
 root.mainloop()
