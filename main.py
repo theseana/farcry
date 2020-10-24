@@ -30,7 +30,11 @@ def student_create():
     n_id.set('')
     addr.set('')
     
-       
+
+def student_search():
+    pass
+
+
 root = Tk()
 
 note = Notebook()
@@ -73,9 +77,16 @@ Entry(s_insert, textvariable=addr).grid(row=4, column=1)
 Button(s_insert, text='Create', command=student_create).grid(row=5, column=0, columnspan=2, sticky=W+E)
 Button(s_insert, text='Cancel', command=root.destroy).grid(row=6, column=0, columnspan=2, sticky=W+E)
 # #################################################################### #
+Label(s_search, text='Name').grid(row=0, column=0)
+search_name = StringVar()
+Entry(s_search, textvariable=search_name).grid(row=0, column=1)
+Label(s_search, text='Family').grid(row=1, column=0)
+search_family = StringVar()
+Entry(s_search, textvariable=search_family).grid(row=1, column=1)
+Button(s_search, text='Search', command=student_search).grid(row=0, column=2, rowspan=2)
 tree = Treeview(s_search)
 vsb = Scrollbar(s_search, orient="vertical",command=tree.yview)
-vsb.grid(row=0, column=1)
+vsb.grid(row=2, column=3)
 tree.configure(yscrollcommand=vsb.set)
 tree["columns"]=("one","two","three")
 tree.column("#0", width=30)
@@ -90,6 +101,6 @@ tree.heading("three", text="Code",anchor=W)
 persons = StudentSelect().get()
 for person in persons:
     tree.insert("",person[0], text=person[0], values=(person[1], person[2], person[4]))
-tree.grid(row=0, column=0)
+tree.grid(row=2, column=0, columnspan=3)
 # #################################################################### #
 root.mainloop()
