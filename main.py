@@ -3,7 +3,7 @@ from tkcalendar import DateEntry
 from tkinter import *
 from tkinter.ttk import Notebook, Treeview, Scrollbar
 
-from database import StudentInsert, StudentSelect
+from database import StudentInsert, StudentSelect,StudentSearch, StudentGet
 
 
 def length(a , b, c):
@@ -29,11 +29,52 @@ def student_create():
     birth.set('')
     n_id.set('')
     addr.set('')
-    
+    tree.delete(*tree.get_children())
+    persons = StudentSelect().get()
+    for person in persons:
+        tree.insert("",person[0], text=person[0], values=(person[1], person[2], person[4]))
+
 
 def student_search():
-    pass
+    name = search_name.get().lower()
+    family = search_family.get().lower()
+    tree.delete(*tree.get_children())
+    persons = StudentSearch(name, family).get()
+    for person in persons:
+        tree.insert("",person[0], text=person[0], values=(person[1], person[2], person[4]))
 
+
+def on_double_click(event):
+    item_id = event.widget.focus()
+    item = event.widget.item(item_id)
+    person = StudentGet(item['text']).get()[0]
+
+    top = Toplevel()
+
+    Label(top, text="Name").grid(row=0, column=0)
+    name_top = StringVar()
+    name_top.set(person[1])
+    Entry(top, textvariable=name_top).grid(row=0, column=1)
+
+    Label(top, text="Family").grid(row=1, column=0)
+    family_top = StringVar()
+    family_top.set(person[2])
+    Entry(top, textvariable=family_top).grid(row=1, column=1)
+
+    Label(top, text="Name").grid(row=2, column=0)
+    birth_top = StringVar()
+    birth_top.set(person[3])
+    Entry(top, textvariable=birth_top).grid(row=2, column=1)
+
+    Label(top, text="Name").grid(row=3, column=0)
+    id_top = StringVar()
+    id_top.set(person[4])
+    Entry(top, textvariable=id_top).grid(row=3, column=1)
+
+    Label(top, text="Name").grid(row=4, column=0)
+    addr_top = StringVar()
+    addr_top.set(person[5])
+    Entry(top, textvariable=addr_top).grid(row=4, column=1)
 
 root = Tk()
 
@@ -102,5 +143,6 @@ persons = StudentSelect().get()
 for person in persons:
     tree.insert("",person[0], text=person[0], values=(person[1], person[2], person[4]))
 tree.grid(row=2, column=0, columnspan=3)
+tree.bind("<Double-Button-1>", on_double_click)
 # #################################################################### #
 root.mainloop()

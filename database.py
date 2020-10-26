@@ -6,8 +6,8 @@ class Database:
         try:
             self.db = mysql.connector.connect(
                 db='schoolManagement',
-                user='root',
-                password='',
+                user='poulstar',
+                password='poulstar',
                 host='localhost'
             )
             self.cr = self.db.cursor()
@@ -74,15 +74,34 @@ class StudentSelect(Database):
         return self.result
 
 
-class StudentSearch(Database):
-    def __init__(self, strValue):
+class StudentGet(Database):
+    def __init__(self, id):
         Database.__init__(self)
-        
-        strValue = '%' + strValue +'%'
-        data = (strValue, strValue)
+
+        query = "SELECT * FROM student WHERE id=%s" % id
+
+        self.cr.execute(query)
+        self.result = self.cr.fetchall()
+
+        self.cr.close()
+        self.db.close() 
+
+    def get(self):
+        return self.result
+
+
+class StudentSearch(Database):
+    def __init__(self, name, family):
+        Database.__init__(self)
+
+        name = '%' + name +'%'
+        family = '%' + family +'%'
+
+        data = (name, family)
+
         query = """SELECT * FROM student
-        WHERE name LIKE %s OR family LIKE %s"""
-        
+        WHERE name LIKE %s AND family LIKE %s"""
+
         self.cr.execute(query, data)
         self.result = self.cr.fetchall()
 
@@ -123,3 +142,4 @@ class GradeSearch(Database):
 
     def get(self):
         return self.result
+
