@@ -1,0 +1,111 @@
+CREATE TABLE car(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(45) NOT NULL,
+serial VARCHAR(45) UNIQUE NOT NULL,
+price VARCHAR(45) NOT NULL
+);
+
+
+CREATE TABLE grade(
+id INT AUTO_INCREMENT,
+studentID INT,
+math VARCHAR(3) NOT NULL,
+shimi VARCHAR(3) NOT NULL,
+fizic VARCHAR(3) NOT NULL,
+tarikh VARCHAR(3) NOT NULL,
+programming VARCHAR(3) NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY(studentId) REFERENCES student(id)
+);
+
+
+
+
+INSERT INTO student(name, family, nationalCode)
+VALUSE (arad, kh, 10111119)
+
+
+
+UPDATE student SET name = 'sina' WHERE id = 2 
+
+DELETE FROM student WHERE id=2
+select * from student
+
+class Database:
+    def __init__(self):
+        self.db = mysql.connector.connect(
+                db='school',
+                user='root',
+                password='',
+                host='localhost'
+            ) 
+        self.cr = self.db.cursor()
+
+
+class studentInsert(Database):
+    def __init_(self,name,familynationalCODE):
+        Database.__init__(self)
+        data = (name, family, nationalCODE)
+        query = """INSERT INTO student
+        (name, family, nationalCODE)
+        VALUSE
+        (%s,%s,%s)"""
+        self.cr.execute(query, data)
+        self.db.commit()
+
+        self.cr = self.cr.close
+        self.db = self.db.close
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO car(name, serial,  price) VALUSE ("jfioz", "212121", "40000");
+
+
+
+UPDATE student SET name = 'sina' WHERE id = 2 
+
+
+DELETE FROM student WHERE id=2
+
+
+select * from student
+
+
+
+
+class Database:
+    def __init__(self):
+        self.db = mysql.connector.connect(
+                db='school',
+                user='root',
+                password='',
+                host='localhost'
+            ) 
+        self.cr = self.db.cursor()
+
+
+class studentDelet(Database):
+    def __init_-(self):  
+        query = "DELETE FROM student WHERE id=%s"
+        self.cr.execute(query)
+        self.db.commit()
+
+        self.cr = self.cr.close
+        self.db = self.db.close
+
+
+
+
+
+
+
