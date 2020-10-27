@@ -121,9 +121,11 @@ Button(s_insert, text='Cancel', command=root.destroy).grid(row=6, column=0, colu
 Label(s_search, text='Name').grid(row=0, column=0)
 search_name = StringVar()
 Entry(s_search, textvariable=search_name).grid(row=0, column=1)
+
 Label(s_search, text='Family').grid(row=1, column=0)
 search_family = StringVar()
 Entry(s_search, textvariable=search_family).grid(row=1, column=1)
+
 Button(s_search, text='Search', command=student_search).grid(row=0, column=2, rowspan=2)
 tree = Treeview(s_search)
 vsb = Scrollbar(s_search, orient="vertical",command=tree.yview)

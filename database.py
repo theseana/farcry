@@ -23,10 +23,10 @@ class StudentInsert(Database):
         (name, family, birthDate, nationalCode, address)
         VALUES
         (%s,%s,%s,%s,%s)"""
-        
+
         self.cr.execute(query, data)
         self.db.commit()
-        
+
         self.cr.close()
         self.db.close()
 
@@ -47,10 +47,10 @@ class StudentDelete(Database):
 class StudentUpdate(Database):
     def __init__(self, colName, colValue, id):
         Database.__init__(self)
-        
+
         data = (colValue, id)
         query = "UPDATE student SET " + colName +"=%s WHERE id=%s"
-        
+
         self.cr.execute(query, data)
         self.db.commit()
 
@@ -142,4 +142,3 @@ class GradeSearch(Database):
 
     def get(self):
         return self.result
-
