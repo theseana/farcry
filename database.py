@@ -45,11 +45,13 @@ class StudentDelete(Database):
 
 
 class StudentUpdate(Database):
-    def __init__(self, colName, colValue, id):
+    def __init__(self, name, family, n_id, birth, addr, id):
         Database.__init__(self)
 
-        data = (colValue, id)
-        query = "UPDATE student SET " + colName +"=%s WHERE id=%s"
+        data = (name, family, n_id, birth, addr, id)
+        query = """UPDATE student 
+        SET name=%s, family=%s, nationalCode=%s, birthDate=%s, address=%s
+        WHERE id=%s"""
 
         self.cr.execute(query, data)
         self.db.commit()

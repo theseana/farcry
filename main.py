@@ -3,7 +3,7 @@ from tkcalendar import DateEntry
 from tkinter import *
 from tkinter.ttk import Notebook, Treeview, Scrollbar
 
-from database import StudentInsert, StudentSelect,StudentSearch, StudentGet
+from database import StudentInsert, StudentSelect,StudentSearch, StudentGet, StudentUpdate
 
 
 def length(a , b, c):
@@ -45,6 +45,14 @@ def student_search():
 
 
 def on_double_click(event):
+    def student_update():
+        StudentUpdate(name_top.get(),
+            family_top.get(),
+            birth_top.get(),
+            id_top.get(),
+            addr_top.get(),
+            item['text']
+            )
     item_id = event.widget.focus()
     item = event.widget.item(item_id)
     person = StudentGet(item['text']).get()[0]
@@ -61,20 +69,23 @@ def on_double_click(event):
     family_top.set(person[2])
     Entry(top, textvariable=family_top).grid(row=1, column=1)
 
-    Label(top, text="Name").grid(row=2, column=0)
+    Label(top, text="B. Date").grid(row=2, column=0)
     birth_top = StringVar()
     birth_top.set(person[3])
     Entry(top, textvariable=birth_top).grid(row=2, column=1)
 
-    Label(top, text="Name").grid(row=3, column=0)
+    Label(top, text="ID").grid(row=3, column=0)
     id_top = StringVar()
     id_top.set(person[4])
     Entry(top, textvariable=id_top).grid(row=3, column=1)
 
-    Label(top, text="Name").grid(row=4, column=0)
+    Label(top, text="Address").grid(row=4, column=0)
     addr_top = StringVar()
     addr_top.set(person[5])
     Entry(top, textvariable=addr_top).grid(row=4, column=1)
+
+    Button(top, text="Edit", command=student_update).grid(row=5, column=0, columnspan=2)
+    Button(top, text="Cancel", comman=top.destroy).grid(row=6, column=0, columnspan=2)
 
 root = Tk()
 
