@@ -29,6 +29,10 @@ def student_create():
     birth.set('')
     n_id.set('')
     addr.set('')
+    tree_update()
+
+
+def tree_update():
     tree.delete(*tree.get_children())
     persons = StudentSelect().get()
     for person in persons:
@@ -48,11 +52,14 @@ def on_double_click(event):
     def student_update():
         StudentUpdate(name_top.get(),
             family_top.get(),
-            birth_top.get(),
             id_top.get(),
+            birth_top.get(),
             addr_top.get(),
             item['text']
             )
+        top.destroy()
+        tree_update()
+
     item_id = event.widget.focus()
     item = event.widget.item(item_id)
     person = StudentGet(item['text']).get()[0]
