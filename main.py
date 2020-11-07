@@ -99,12 +99,12 @@ root = Tk()
 note = Notebook()
 
 s_insert = Frame()
-# s_update = Frame()
 s_search = Frame()
+g_insert = Frame()
 
 note.add(s_insert, text='Insert')
-# note.add(s_update, text='Update')
 note.add(s_search, text='Search')
+note.add(g_insert, text='Grade Insert')
 
 
 note.grid(row=0, column=0)
@@ -165,4 +165,33 @@ for person in persons:
 tree.grid(row=2, column=0, columnspan=3)
 tree.bind("<Double-Button-1>", on_double_click)
 # #################################################################### #
+Label(g_insert, text='Math').grid(row=0, column=0)
+math = StringVar()
+Entry(g_insert, textvariable=math).grid(row=0, column=1)
+
+Label(g_insert, text='Chemistry').grid(row=1, column=0)
+chemistry = StringVar()
+Entry(g_insert, textvariable=chemistry).grid(row=1, column=1)
+
+Label(g_insert, text='Physics').grid(row=2, column=0)
+physics = StringVar()
+Entry(g_insert, textvariable=physics).grid(row=2, column=1)
+
+Label(g_insert, text='History').grid(row=3, column=0)
+history = StringVar()
+Entry(g_insert, textvariable=history).grid(row=3, column=1)
+
+Label(g_insert, text='Programming').grid(row=4, column=0)
+programming = StringVar()
+Entry(g_insert, textvariable=programming).grid(row=4, column=1)
+
+Label(g_insert, text='Student ID').grid(row=5, column=0)
+values = []
+for _ in StudentSelect().get():
+    values.append(f"{_[0]}-{_[1]}{_[2]}")
+std = StringVar()
+Spinbox(g_insert, textvariable=std,state='readonly', values=tuple(values)).grid(row=5, column=1)
+Button(g_insert, text='Create', command=grade).grid(row=6, column=0, columnspan=2, sticky=W+E)
+
+
 root.mainloop()
