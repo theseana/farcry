@@ -3,8 +3,23 @@ from tkcalendar import DateEntry
 from tkinter import *
 from tkinter.ttk import Notebook, Treeview, Scrollbar
 
-from database import StudentInsert, StudentSelect,StudentSearch, StudentGet, StudentUpdate
+from database import StudentInsert, StudentSelect,StudentSearch, StudentGet, StudentUpdate, GradeInsert
 
+
+def grade():
+    GradeInsert(
+    std.get().split("-")[0],
+    math.get(),
+    physics.get(),
+    chemistry.get(),
+    history.get(),
+    programming.get()
+    )
+    math.set('')
+    physics.set('')
+    chemistry.set('')
+    history.set('')
+    programming.set('')
 
 def length(a , b, c):
     if len(n_id.get()) == 10 and n_id.get().isdigit():
@@ -192,6 +207,6 @@ for _ in StudentSelect().get():
 std = StringVar()
 Spinbox(g_insert, textvariable=std,state='readonly', values=tuple(values)).grid(row=5, column=1)
 Button(g_insert, text='Create', command=grade).grid(row=6, column=0, columnspan=2, sticky=W+E)
-
+##################################
 
 root.mainloop()
