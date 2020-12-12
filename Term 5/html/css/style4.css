@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "MyFont";
+    src: url('../font/Nerko_One/NerkoOne-Regular.ttf') format("truetype");
+}
+
+
+h1{
+    font-family: "MyFont";
+    font-style: italic;
+}
+
+
+a:hover{
+    color: green;
+}
+
+a:visited{
+    color: blue;
+}
+
+a:active{
+    color: white;
+}

@@ -1,0 +1,51 @@
+header{
+    background-color: rgb(49, 0, 95);
+    color:gray;
+    font-size: 30px;
+    text-align: center;
+    padding: 50px;
+}
+
+aside{
+    float: right;
+    background-color: rgb(76, 60, 90);
+    width: 30%;
+    height: 500px;
+}
+
+article{
+    float: left;
+    background-color: rgb(108, 108, 119);
+    width: 70%;
+    height: 500px;
+}
+footer{
+    background-color: white;
+    padding: 15px;
+    text-align: center;
+
+}
+
+ul{
+    direction: rtl;
+}
+
+a{
+    color: yellow;
+    text-decoration: none;
+}
+
+img:hover{
+    width: 60px;
+}
+
+@media (max-width: 600px){
+    aside{
+        width: 100%;
+        height: auto;
+    }
+    article{
+        width: 100%;
+        height: auto;
+    }
+}
