@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "front";
+    src: url('../font/Pacifico-Regular.ttf') format("truetype");
+}
 body{
     background-image: url("../img/1.jpg");
     background-repeat: no-repeat;
@@ -17,4 +21,22 @@ header{
    padding-top: 10px;
    padding-left: 200px;
    color: white;
+   float: left;
+}
+nav{
+    float: right;
+    padding-top: 10px;
+    padding-right: 200px;
+    word-spacing: 15px;
+}
+.nav-link{
+    color: white;
+    text-decoration: none;
+}
+.title{
+    color: white;
+    font-size: 40px;
+}
+.front-end{
+    font-family: 'front';
 }
