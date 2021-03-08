@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body class="bg-dark">
+    <div id="app" >
+      <div class="container">
+        <p class="display-3 text-danger">
+          My ToDo List:
+        </p>
+        <div class="list-group">
+          <button v-for="(todo, index) in todos" @click="moveToDo(index)" type="button" class="h1 list-group-item list-group-item-action active" aria-current="true">
+            {{ todo.title }}
+          </button>
+        </div>
+
+        <div class="row">
+          <p class="text-success display-6">New ToDo</p>
+          <input @keyup.enter="addToDo" v-model="newToDo" class="form-control-lg" placeholder="Water Bill...">
+          <button @click="addToDo" class="btn btn-warning">INSERT</button>
+        </div>
+
+        <div class="row">
+          <p class="text-danger display-6">Done List</p>
+
+          <button v-for="d in done" class="btn btn-danger">
+            {{ d.title }}
+          </button>
+        </div>
+
+      </div>  
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            newToDo: '',
+            todos: [
+              {title: 'Power Bill'}, 
+              {title: 'Bread'}, 
+              {title: 'Go to Barber'},
+            ],
+            done: [
+
+            ]
+          },
+          methods:{
+            addToDo: function(){
+              if (this.newToDo && this.newToDo.trim()){
+                this.todos.push({title: this.newToDo});
+                this.newToDo = '';
+              }
+            },
+            moveToDo: function(index){
+              this.done.push(this.todos[index]);
+              this.todos.splice(index, 1);
+            }
+          }
+        })
+    </script>
+  </body>
+</html>
