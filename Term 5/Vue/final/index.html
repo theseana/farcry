@@ -11,7 +11,10 @@
     <div class="app">
         <div class="container">
             <div class="row mt-5">
-                <div class="col-6">
+                <div class="col-md-6 text-warning display-5">
+                    <p>We Register {{ count }} Persons!</p>
+                </div>
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label for="first_name" class="form-label h3 text-success">First Name</label>
                         <input type="text" v-model="n" class="form-control" id="first_name" placeholder="Sina">
@@ -30,9 +33,7 @@
                     </div>
                     <button @click="create" class="btn btn-danger">Create</button>
                 </div>
-                <div class="col-6 text-warning display-5">
-                    <p>We Register {{ count }} Persons!</p>
-                </div>
+
             </div>
 
             <hr class="text-warning">
